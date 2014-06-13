@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Multi-Part Forms with JQuery and JQueryUI</title>
+
+<script language="javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script language="javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+<link type="text/css" href="http://code.jquery.com/ui/1.10.4/themes/cupertino/jquery-ui.css" rel="stylesheet">
+
+  <script>
+  $(function() {
+    $( "#tabbedform" ).tabs();
+  });
+  
+  $(function() {
+    $( "button" )
+      .button()
+      .click(function( event ) {
+        event.preventDefault();
+      });
+  });
+
+$(function() {
+	$("#nextbutton1")
+		.button()
+		.click(function(event) {
+			$( "#tabbedform" ).tabs( "option", "active", 1 );			
+		});
+});
+
+$(function() {
+	$("#nextbutton2")
+		.button()
+		.click(function(event) {
+			$( "#tabbedform" ).tabs( "option", "active", 2 );			
+		});
+});
+
+$(function() {
+	$("#nextbutton3")
+		.button()
+		.click(function(event) {
+			$( "#tabbedform" ).tabs( "option", "active", 3 );			
+		});
+});
+
+$(function() {
+	$("#agreement")
+		.click(function(event) {
+			if (this.checked) {
+			$( "#submitbutton").button("enable");	
+			} else 
+			{ $( "#submitbutton").button("disable"); }
+		});
+});
+
+
+
+  
+  </script>
+
+<style type="text/css">
+
+#tabbedform { width: 700px; font-size: smaller; }
+
+</style>
+
+</head>
+
+<body>
+
+<form>
+<div id="tabbedform">
+
+<ol>
+<li><a href="#personal">Personal Info</a></li>
+<li><a href="#address">Contact Information</a></li>
+<li><a href="#subscriptions">Subscriptions</a></li>
+<li><a href="#terms">Terms and Conditions</a></li>
+</ol>
+
+<div id="personal">
+<P>Welcome to the form! Enter your data below, then select next or use the tabs to navigate.</P>
+
+<P><input type="text" placeholder="First Name" name="firstname" /> <input type="text" placeholder="Last Name" name="lastname" /></P>
+<P><select name="gender"><option value="" title="Select Your Gender">Select Your Gender:</option><option value="Male" title="Male">Male</option><option value="Female" title="Female">Female</option></select>
+<input type="text" placeholder="Your Age" name="age" />
+</P>
+
+<P><button id="nextbutton1">Next >>></button>
+
+</div>
+<div id="address">
+<P>Please enter your contact information</P>
+
+<input name="address1" placeholder="Address Line 1" size="30" /><BR /><input name="address2" placeholder="Address Line 2" size="30" /><BR />
+<input name="city" placeholder="City" size="30" />, 
+
+<select name="state">
+<option value="">Select a State</option>
+<option value="AK">Alaska</option>
+<option value="AR">Arkansas</option>
+<option value="CA">California</option>
+<option value="CO">Colorado</option>
+</select>
+
+<input name="zip" placeholder="ZIP Code" size="10" />
+
+<BR />
+
+<BR />
+<input name="phone" placeholder="Phone" size="12" />
+
+<P><button id="nextbutton2">Next >>></button></P>
+
+</div>
+
+<div id="subscriptions">
+<P>Choose your subscription options</P>
+
+<P><input type="checkbox" name="newsletter">Receive our email newsletter<BR /> <BR />
+
+<input type="checkbox" name="deals">Receive our daily deals<BR /> <BR />
+
+<input type="checkbox" name="partners">Receive details from our partners<BR /> <BR />
+
+<input type="checkbox" name="fourth">Choose a fourth option
+</P>
+<P><button id="nextbutton3">Next >>></button></P>
+
+</div>
+
+<div id="terms">
+
+  <P>Here are a bunch of legal terms that you really need to read and agree with. If you agree, you should select below so you can submit this form.<P>
+  
+  <P>I nearly forgot this one. And also this one, so we can make sure that we have enough text that gives you something to actually agree to.</P>
+  
+   <P>I nearly forgot this one. And also this one, so we can make sure that we have enough text that gives you something to actually agree to.</P>
+   
+    <P>I nearly forgot this one. And also this one, so we can make sure that we have enough text that gives you something to actually agree to.</P>
+    
+     <P>I nearly forgot this one. And also this one, so we can make sure that we have enough text that gives you something to actually agree to.</P>
+     
+      <P>I nearly forgot this one. And also this one, so we can make sure that we have enough text that gives you something to actually agree to.</P>
+      
+       <P>I nearly forgot this one. And also this one, so we can make sure that we have enough text that gives you something to actually agree to.</P>
+<P><input type="checkbox" id="agreement">I agree to the above terms.</P>
+
+<P><button id="submitbutton" disabled>Submit</button></P>
+
+</div>
+
+
+
+
+</div>
+</form>
+
+</body>
+</html>

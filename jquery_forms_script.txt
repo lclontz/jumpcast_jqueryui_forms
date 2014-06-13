@@ -1,0 +1,105 @@
+[0:00:12]
+Hi my name is Lee Clontz and I'm a Web Developer in Atlanta, Georgia. In this video, we're going to use jQuery and jQuery UI to transform a simple registration form into something more usable, functional, and attractive. We'll use a few simple techniques to create tab sections that work great with mouse, keyboard, or touch.
+
+[0:00:29]
+We'll learn how to create a color scheme that can coordinate look and feel across multiple tabs and widgets, and we'll require a user agreement to be checked before the form can be submitted. Now, even though we're using a form as an example, the techniques are useful anywhere you have content that you want to present in bite-sized chunks.
+
+[0:00:44]
+Technically, all you'll need is a basic, functional knowledge of HTML and some comfort with JavaScript syntax would be useful, but I'll tell you all you need to know in the video, so let's get started. So, we're gonna start with a very basic registration form. You've certainly seen forms like this a thousand times.
+
+[0:01:00]
+This one doesn't have any real style or functionality. It's just asking basic demographic information. It asks you to subscribe to some newsletters. There's some legalese down here. This is just fake, filler text to show you how you could deal with terms and conditions style agreement. At the bottom, there is a checkbox to have you agree to the terms and conditions, as well as a submit button.
+
+[0:01:24]
+So, what we're gonna be working toward is turning it into this. This is a tabbed form. You can see it has all the same information, but it's in a much more consumable, much more attractive format. And it works with keyboard. It works with touch. You can use shortcuts.
+
+[0:01:41]
+It requires that the terms and conditions be agreed to before the Submit button will actually light and function, and you can see it toggles on and off. We have the jQuery library included here, and this is pulling it from the jQuery content delivery network or cdn@jquery.com. So, I'm gonna paste the jQuery and jQuery UI libraries into the head, and that's going to enable the functionality on our page.
+
+[0:02:03]
+Now, nothing's actually gonna look any different, we've just included the libraries, which have activated the functionality, but we're not actually using it yet. The other thing we're going to do is grab a theme, and those are available at jqueryui.com or user interface. And, if you go to that site, go to the Themes link, you'll see a ThemeRoller on the left.
+
+[0:02:21]
+And, what that will let you do is browse the gallery of existing themes, and you can see what they'll look like and what the different widgets will look like on your page. They all have a name you can see Redmond, you can see Sunny. Those are typically going to be available on the major CDNs, the continent delivery networks, just like the libraries are.
+
+[0:02:40]
+So, if you wanna pull those remotely, you can do so, or you can roll your own theme, a completely custom version, where you'll have to download the CSS manually and include it on your site. You can play with the themes in real-time and see the differences, and when you're satisfied with it, you can download it to your local site and include it.
+
+[0:03:01]
+So, in my case, I'm going to use a CDN theme, right, I'm gonna use Cupertino. The names all fit into the same naming convention, where the name goes in between the themes and the CSS document itself. So, when I say that, in a preview, nothing will actually have happened yet because we haven't started invoking any of the jQuery functionality yet, but we're gonna do that now.
+
+[0:03:23]
+So, the next thing we're gonna do is wrap the entire form in an ID-ed div. I'm gonna make one called tabbedform and put the close div tag at the bottom. And, what that's going to do is use jQuery to identify where my content is actually going to be, my tabbed content.
+
+[0:03:39]
+The next thing we need to do is to break the content within this main div, this tabbedform div, into individual sections by using named div tags. I'm gonna create one for the personal info. I'm gonna create one for contact info. One for subscribe and one for terms. Each of these divs is going to map to a tab, so you want to make sure that you ID them as something memorable because, in a moment, we're going to map those IDs to the tabs that will point to them.
+
+[0:04:26]
+So, I'm gonna come up to the top, and I'm gonna create an ordered list with four LIs, and these will map to our four tabs. So, the links that will be inside the LIs will map to the IDs of the tabs that we're going to create. So, I have personal, and I'm gonna map that to something called personal info.
+
+[0:04:52]
+Contact info is gonna map to an anchor called contact. Subscribe is going to map out to an anchor called subscribe, and terms is going to map to an anchor called terms. When I come back out, this will just look like a regular old, ordered list. So now, we're actually going to do some jQuery.
+
+[0:05:12]
+So, making sure that the document has the library included at the top, I'm gonna create a script tag, a JavaScript tag. And, what I'm gonna do in that tag is put a dollar sign. And, the dollar sign is a symbol used to identify to the JavaScript parser that we're gonna start working with a jQuery method.
+
+[0:05:29]
+If jQuery's included, this will all happen automatically. So, I'm gonna create a function, and what I want to occur when I, when that function runs, is that it's going to find the ID-ed element of tabbedform. It's gonna run a function called tabs, which is enabled by the jQuery UI library.
+
+[0:05:51]
+So, as long as the ID that you've identified in this function is the same as the one that you have identified in your div, when you reload, we should have tabs. And you can see here, that we do. Just by doing that one command, the tabs have been created.
+
+[0:06:08]
+They're using the theme that we have included. The Cupertino theme gives us this blue and light blue color combination, but it'll use whichever one you chose. By default, the tabs will take up the entire width of the document or whatever element you have them contained within. Since it's 100% right now, that's what it's taking up.
+
+[0:06:24]
+It'll conform to any CSS you attach to that tabbedform div, that containing div. So, I'm gonna make a style tag. We're gonna go ahead and make the font a little smaller and make the width a little narrower. So, I'll say tabbedform should be a width of 700 pixels.
+
+[0:06:41]
+And, we'll make the font size smaller, relative to the document. And that'll make everything look a little bit more like what I want it to look like, in this case. Yours can look like whatever you like. So next, we wanna make this terms checkbox toggle the Submit button.
+
+[0:06:58]
+Right now, that doesn't work, but we'll change that shortly. So, we go back into our HTML. We have a checkbox, ID-ed as agreement, and we hav a submit button ID-ed as submitbutton, and it's currently set to be disabled. So, I'm gonna come up to the top. I'm gonna create a new function, either in the existing script block or in a new one, it doesn't actually matter, however you like to organize your document is fine.
+
+[0:07:20]
+So, the first thing we need to do is, is override the default behavior of buttons. Basically tell the HTML renderer, the browser, that, that we're going to control how this button gets fired. So, we're gonna create a function. And, we're gonna attach it to button objects. And, we're gonna run a button method and the click method of that object.
+
+[0:07:44]
+And, so what we're gonna do is say, basically, any time there's a click, run an event called preventDefault, which will prevent the default action of that button. We'll need to make sure we write a JavaScript function in order to process that Submit button but that just works like normal.
+
+[0:07:59]
+Any normal JavaScript would. So next, we're going to tell we're gonna write a function to tell the checkbox what to do when we check it. So, we're gonna make a new function, making sure it ends with a semicolon. And, what we're gonna say, is bind it to the agreement ID-ed object, and we're gonna attach to the click method.
+
+[0:08:26]
+And so, that is a checkbox, and we are going to run a function when that object is clicked, when that checkbox is clicked. And we're gonna say, when the click is fired, if this element is checked, then we wanna set the button called submitButton, remember it's ID-ed as submitButton, in my case.
+
+[0:08:50]
+And, we wanna run the button method of that object, enable. Otherwise, so if it's unchecked, so if it's unchecked, we wanna do the opposite and check the submitButton to disable. So, everything should now match up. So, we start a function. It's working on the ID-ed object, agreement. The click method, and then if it's checked, then we want to enable it, and if it's not checked, if it's been unchecked, we want to disable it.
+
+[0:09:29]
+So, let's take a look. We reload. We go to Terms. Now, it's disabled. When we check the box, it's enabled. When we uncheck, it it's disabled. Everything works the way it's supposed to. So, the last thing we wanna do is make the form a little easier to follow by making next buttons at the bottom of the first, second, and third tabs.
+
+[0:09:48]
+That'll take through kind of a, a stepwise process through the form. So, at the bottom of each of our divs, we want to create a paragraph container, with a button inside. And we wanna call this one, were gonna ID this one as nextbutton1. We'll put that text that'll, that will appear inside of it.
+
+[0:10:09]
+And, we'll save. And when we come out and reload, we'll see that jQuery UI has made the button's appearance fit into the broader look and feel of the Cupertino's theme. Right? The Cupertino UI theme. Everything looks like it's part of a unified whole, which is one of the nice things about jQuery UI.
+
+[0:10:26]
+So next, we wanna come in. We wanna copy that button and paste it into each of our divs. And, we'll name, number them as 1, 2, and 3, mapping to whichever tab they're in. So, when I reload, now each tabbed region should have an X button. They don't do anything yet, but we're gonna do we're gonna put that JavaScript in now.
+
+[0:10:50]
+So, what we wanna do is trap for when a user clicks on each of these individual buttons. You can do this programmatically, but I'm gonna do them one by one, just to make it a little easier to follow. So, we wanna create a function. And, we want to say we wanna attach to the Next button, one ID-ed object.
+
+[0:11:12]
+We'll go into the button method and the click method of the button. And, we wanna run a function when that button is clicked on. And, what we want it to do is in, within the tabbedform element and the tabs method, we wanna change option, active, to one. So, remembering that JavaScript numbers from zero, these tabs are actually zero, one, and two within the JavaScript construct.
+
+[0:11:45]
+So, when we say go to the, go to active tab one, we're actually going to the second tab. So now, when we come out, and reload, and we click on the Next button, it takes us to the second. So, just to show you how this works, again, we're gonna duplicate this function a couple of times and, basically, just make it work for button two and take you to tab two, and then three to tab three.
+
+[0:12:12]
+We'll come out now and confirm that everything works as it's supposed to. And, it does. The checkbox still works, as well. Now, this is purely for interface. There's no submission handler here. Really, what this exercise is about is taking a cumbersome, lengthy piece of content and breaking it into chunks to make it more easily consumable for your users.
+
+[0:12:35]
+So, that's a taste of the power of jQuery and jQuery UI, but there's plenty more from here. I encourage you to visit the API documentation at the jQuery homepages or view other videos to learn more. Good luck with your development, and I look forward to your feedback.
+
